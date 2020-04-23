@@ -55,6 +55,7 @@ covid_cases_df <- read_csv(paste(csv_dir,case_date,".csv", sep="")) %>%
     country=="Laos" ~ "Lao PDR",
     country=="Czechia" ~ "Czech Republic",
     country=="Slovakia" ~ "Slovak Republic",
+    country=="Korea, South" ~ "Korea, Rep.",
     TRUE ~ country
   ))
 
@@ -273,8 +274,10 @@ p1<-ggplot() +
             linetype = maps$boundaries$linetype) +
   scale_x_continuous(expand = c(0, 0), limits = standard_crop_wintri()$xlim) +
   scale_y_continuous(expand = c(0, 0), limits = standard_crop_wintri()$ylim) +
-  scale_fill_continuous(
-    name = 'Log Covid-19 Caseload'
+  scale_fill_gradientn(
+    name = 'Log Covid-19 Caseload',
+    colours = topo.colors(10),
+    trans = 'reverse'
   ) +
   coord_equal() +
   theme_map(base_size=12) +
@@ -295,8 +298,10 @@ p2<-ggplot() +
             linetype = maps$boundaries$linetype) +
   scale_x_continuous(expand = c(0, 0), limits = standard_crop_wintri()$xlim) +
   scale_y_continuous(expand = c(0, 0), limits = standard_crop_wintri()$ylim) +
-  scale_fill_continuous(
-    name = 'Log International tourism,\nnumber of arrivals'
+  scale_fill_gradientn(
+    name = 'Log International tourism,\nnumber of arrivals',
+    colours = topo.colors(10),
+    trans = 'reverse'
   ) +
   coord_equal() +
   theme_map(base_size=12) +
@@ -305,7 +310,7 @@ p2<-ggplot() +
     caption = 'Source: International Tourism from World Bank WDI: ST.INT.ARVL'
   )
 
-patchwork::p1/p2
+p1 / p2
 
 ```
 
