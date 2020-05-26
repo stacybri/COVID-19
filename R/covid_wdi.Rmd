@@ -24,7 +24,7 @@ library(wbgmaps)
 library(ggthemes)
 library(patchwork)
 #pull date
-case_date <- "04-21-2020"
+case_date <- "04-27-2020"
 
 # Directory for SPI csv files that were previously created
 csv_dir <- "C:/Users/wb469649/Documents/Github/COVID-19/csse_covid_19_data/csse_covid_19_daily_reports/"
@@ -245,7 +245,7 @@ Confirmed_plot_travel <- ggplot(data=graph_df, aes(x=log(value), y=log(Confirmed
   Confirmed_plot_travel
   
   
-  
+  plotly::ggplotly(Confirmed_plot_travel)
 
 
 ```
